@@ -12,7 +12,9 @@
 								<?php
 								$Today = date('y:m:d');
 								$new = date('l, F d, Y', strtotime($Today));
-								echo $new;
+//by using htmlspecialchars() with the ENT_QUOTES flag, you ensure that any special characters 
+//in $new are properly encoded, reducing the risk of XSS vulnerabilities.
+								echo htmlspecialchars($new, ENT_QUOTES, 'UTF-8');
 								?>
 							</div>
 					</div>
