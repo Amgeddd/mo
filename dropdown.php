@@ -1,3 +1,6 @@
+<?php
+// PHP code starts here
+?>
 					<li>		
 					<a href=""  data-toggle="dropdown" title="Click Here for Sign-Up" ><i class="icon-user icon-large"></i> Sign-Up</a>
 					<ul class="dropdown-menu">
@@ -5,3 +8,6 @@
 					<li><a href="teacher_form.php"><i class="icon-user icon-large"></i>&nbsp;Teacher</a></li>
 					</ul>
 					</li>
+<?php
+// PHP code ends here
+?>
