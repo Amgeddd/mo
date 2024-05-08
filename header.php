@@ -1,3 +1,6 @@
+<?php
+// PHP code starts here
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,3 +47,6 @@ $(function(){
 		</noscript>		
 </head>
 <body>
+<?php
+// PHP code ends here
+?>
