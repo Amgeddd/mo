@@ -74,18 +74,10 @@ $stmt = mysqli_prepare($conn, $sql);
 
 if ($stmt) {
     // Bind parameters to the prepared statement
-    mysqli_stmt_bind_param($stmt, "ssssssss", $firstname, $lastname, $username, $gender, $address, $contact, $type, $password);
+    mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $message);
 
     // Execute the statement
     $result = mysqli_stmt_execute($stmt);
-
-    if ($result) {
-        // Statement executed successfully
-        echo "Data inserted successfully.";
-    } else {
-        // Error occurred while executing the statement
-        echo "Error: " . mysqli_stmt_error($stmt);
-    }
 
     if ($result) {
         // Redirect to success page
