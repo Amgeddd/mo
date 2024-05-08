@@ -54,23 +54,17 @@
 
             <?php
 if(isset($_POST['submit'])) {
-    $firstname = htmlspecialchars($_POST['first_name']);
-    $lastname = htmlspecialchars($_POST['last_name']);
-    $email = htmlspecialchars($_POST['email']);
-    $message = htmlspecialchars($_POST['message']);
+    $firstname = htmlspecialchars($_POST['firstname']);
+    $lastname = htmlspecialchars($_POST['lastname']);
+    $username = htmlspecialchars($_POST['username']);
+    $gender = htmlspecialchars($_POST['gender']);
+    $address = htmlspecialchars($_POST['address']);
+    $contact = htmlspecialchars($_POST['contact']);
+    $type = htmlspecialchars($_POST['type']);
+    $password = htmlspecialchars($_POST['password']);
 
-    // Assuming $conn is your database connection object
-
-    // Prepare the SQL statement with placeholders
-    $sql = "INSERT INTO contact (first_name, last_name, email, message) VALUES (?, ?, ?, ?)";
-
-    // Validate and sanitize user input (e.g., $firstname, $lastname, $email, $message)
-
-// Prepare the SQL statement with placeholders
-$sql = "INSERT INTO your_table_name (firstname, lastname, email, message) VALUES (?, ?, ?, ?)";
-
-// Prepare the statement
-$stmt = mysqli_prepare($conn, $sql);
+    $sql = "INSERT INTO member (firstname, lastname, username, gender, address, contact, type, password) 
+           $stmt = mysqli_prepare($conn, $sql);
 
 if ($stmt) {
     // Bind parameters to the prepared statement
@@ -86,16 +80,11 @@ if ($stmt) {
         // Error occurred while executing the statement
         echo "Error: " . mysqli_stmt_error($stmt);
     }
-    $result = mysqli_stmt_execute($stmt);
 
-    if ($result) {
-        // Redirect to success page
-        header("Location: success2.php");
-        exit();
-    }
-}
-
-    }
+    if(mysqli_stmt_execute($stmt)) {
+        echo "<script type='text/javascript'>window.location='success.php';</script>";
+    } 
+    mysqli_stmt_close($stmt);
 } else {
     echo " ";
 }
