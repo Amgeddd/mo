@@ -64,21 +64,37 @@ if(isset($_POST['submit'])) {
     // Prepare the SQL statement with placeholders
     $sql = "INSERT INTO contact (first_name, last_name, email, message) VALUES (?, ?, ?, ?)";
 
-    // Prepare the statement
-    $stmt = mysqli_prepare($conn, $sql);
+    // Validate and sanitize user input (e.g., $firstname, $lastname, $email, $message)
 
-    if ($stmt) {
-        // Bind parameters to the prepared statement as strings
-        mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $message);
+// Prepare the SQL statement with placeholders
+$sql = "INSERT INTO your_table_name (firstname, lastname, email, message) VALUES (?, ?, ?, ?)";
 
-        // Execute the statement
-        $result = mysqli_stmt_execute($stmt);
+// Prepare the statement
+$stmt = mysqli_prepare($conn, $sql);
 
-        if ($result) {
-            echo "<script type='text/javascript'>window.location='success2.php';</script>";
-            exit();
-        }
-        mysqli_stmt_close($stmt);
+if ($stmt) {
+    // Bind parameters to the prepared statement
+    mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $message);
+
+    // Execute the statement
+    $result = mysqli_stmt_execute($stmt);
+
+    if ($result) {
+        // Redirect to success page
+        header("Location: success2.php");
+        exit();
+    } else {
+        // Handle execution error
+        echo "Error executing the statement: " . mysqli_stmt_error($stmt);
+    }
+
+    // Close the statement
+    mysqli_stmt_close($stmt);
+} else {
+    // Handle statement preparation error
+    echo "Error preparing statement: " . mysqli_error($conn);
+}
+
     }
 } else {
     echo " ";
