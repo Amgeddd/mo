@@ -109,11 +109,22 @@ if(isset($_POST['submit'])) {
     $password = htmlspecialchars($_POST['password']);
 
     $sql = "INSERT INTO member (firstname, lastname, username, gender, address, contact, type, password) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+           $stmt = mysqli_prepare($conn, $sql);
 
-    $stmt = mysqli_prepare($conn, $sql);
-
+if ($stmt) {
+    // Bind parameters to the prepared statement
     mysqli_stmt_bind_param($stmt, "ssssssss", $firstname, $lastname, $username, $gender, $address, $contact, $type, $password);
+
+    // Execute the statement
+    $result = mysqli_stmt_execute($stmt);
+
+    if ($result) {
+        // Statement executed successfully
+        echo "Data inserted successfully.";
+    } else {
+        // Error occurred while executing the statement
+        echo "Error: " . mysqli_stmt_error($stmt);
+    }
 
     if(mysqli_stmt_execute($stmt)) {
         echo "<script type='text/javascript'>window.location='success.php';</script>";
