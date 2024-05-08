@@ -132,11 +132,33 @@ if(isset($_POST['submit'])) {
     $password = htmlspecialchars($_POST['password']);
 
     $sql = "INSERT INTO member (firstname, lastname, username, gender, address, contact, type, password) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-    $stmt = mysqli_prepare($conn, $sql);
-
+            $sql = "INSERT INTO member (firstname, lastname, username, gender, address, contact, type, password) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	
+$stmt = mysqli_prepare($conn, $sql);
+//dynamic parameters,which can be a potential security risk if not handled properly. To address this and ensure the security of your code, 
+//you need to properly handle the dynamic parameters by validating and sanitizing user input before using it in the prepared statement.
+// Check if statement preparation succeeded
+if ($stmt) {
+    // Bind parameters with appropriate data types
     mysqli_stmt_bind_param($stmt, "ssssssss", $firstname, $lastname, $username, $gender, $address, $contact, $type, $password);
+
+    // Execute the statement
+    mysqli_stmt_execute($stmt);
+
+    // Check for successful execution
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        echo "Record inserted successfully.";
+    } else {
+        echo "Error: " . mysqli_stmt_error($stmt);
+    }
+
+    // Close the statement
+    mysqli_stmt_close($stmt);
+} else {
+    echo "Error: " . mysqli_error($conn);
+}
+
 
     if(mysqli_stmt_execute($stmt)) {
         echo "<script type='text/javascript'>window.location='success.php';</script>";
