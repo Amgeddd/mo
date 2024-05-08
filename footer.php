@@ -1,4 +1,6 @@
-
+<?php
+// PHP code starts here
+?>
     <footer class="footer">
       <div class="container">
 	  <div class="foot-margin">
@@ -18,3 +20,6 @@
 <script type='text/javascript' src='scripts/diapo.js'></script> 
 </body>
 </html>
+<?php
+// PHP code ends here
+?>
