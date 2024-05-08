@@ -83,16 +83,7 @@ if ($stmt) {
         // Redirect to success page
         header("Location: success2.php");
         exit();
-    } else {
-        // Handle execution error
-        echo "Error executing the statement: " . mysqli_stmt_error($stmt);
     }
-
-    // Close the statement
-    mysqli_stmt_close($stmt);
-} else {
-    // Handle statement preparation error
-    echo "Error preparing statement: " . mysqli_error($conn);
 }
 
     }
