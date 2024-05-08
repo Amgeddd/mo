@@ -1,4 +1,6 @@
-		
+<?php
+// PHP code starts here
+?>		
     	<div style="overflow:hidden; width:960px; margin:0 auto; padding:0 20px;"> 
                 <div class="pix_diapo">
 
@@ -40,3 +42,6 @@
     
     
     </section> 
+<?php
+// PHP code ends here
+?>
